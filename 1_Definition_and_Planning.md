@@ -103,15 +103,120 @@ Each use case follows a structured format:
 
 ---
 
-## 3. UI Prototypes
-Prototypes serve as a visual representation of the application’s interface:
-- **Tools Used:** Figma
-- **Components:**
-  - **Login & Authentication** (Secure login, role-based access)
-  - **Dashboard** (Overview of bookings, trips, reports)
-  - **Booking System** (Create, update, cancel bookings)
-  - **Reporting & Analytics** (Graphs, data trends, export options)
-  - **User Management** (Role assignment, permissions)
+## **3. UI Prototypes**
+Prototypes serve as a visual representation of the application’s interface. The system follows a **modular structure**, ensuring seamless navigation and accessibility.
+
+### **Tools Used**
+- **Figma** (for design and prototyping)
+- **React.js with Material UI** (for implementation)
+- **NivoCharts** (for data visualization)
+
+### **UI Views**
+The UI consists of multiple views, each designed to meet specific user needs:
+
+#### **1. Login & Authentication (`login`)**
+- **Purpose:** Secure user authentication with role-based access.
+- **Features:**
+  - Email & password login with JWT authentication.
+  - Role-based login (Admin, Customer, Driver).
+  - "Forgot Password" feature for password recovery.
+  - Error handling for incorrect credentials.
+- **View Details:**
+  - Clean and minimalistic login form.
+  - Animated loading spinner during authentication.
+  - Alerts for login failures.
+
+#### **2. Dashboard (`dashboard/index.jsx`)**
+- **Purpose:** Provide an overview of bookings, trips, and analytics.
+- **Features:**
+  - Real-time tracking of deliveries.
+  - KPI widgets displaying total trips, revenue, and performance metrics.
+  - Interactive data visualization using bar, pie, and line charts.
+  - Quick access navigation to settings, reports, and user management.
+- **View Details:**
+  - Left-side navigation menu for easy access to features.
+  - Customizable dashboard layout based on user role.
+
+#### **3. Booking System (`form`)**
+- **Purpose:** Allow customers to book shipments quickly.
+- **Features:**
+  - Step-by-step booking form.
+  - Live cost estimation based on distance and weight.
+  - Booking modification and cancellation options.
+  - Confirmation screen with tracking details.
+- **View Details:**
+  - Intuitive form with auto-suggestions for address fields.
+  - Clear CTA buttons for "Book Now" and "Cancel."
+
+#### **4. Delivery Tracking & Geography (`geography`)**
+- **Purpose:** Provide real-time delivery status updates.
+- **Features:**
+  - GPS-based tracking with map integration.
+  - Status updates like "In Transit," "Out for Delivery," and "Delivered."
+  - Estimated time of arrival (ETA) predictions.
+- **View Details:**
+  - Interactive maps showing delivery routes.
+  - Status update notifications for customers.
+
+#### **5. Reports & Analytics (`performance_metric`, `pie`, `line`)**
+- **Purpose:** Allow admins and analysts to generate and view reports.
+- **Features:**
+  - Customizable filters for reports (date range, delivery status, driver performance).
+  - Different visualization formats (pie charts, line graphs, bar charts).
+  - Export options (CSV, PDF).
+- **View Details:**
+  - Data tables with sortable columns.
+  - Graphical representation of key logistics metrics.
+
+#### **6. User Management & Settings (`settings`)**
+- **Purpose:** Manage user roles, permissions, and application settings.
+- **Features:**
+  - Role-based access control (RBAC) for different user types.
+  - Password reset and profile management.
+  - System-wide configurations.
+- **View Details:**
+  - Intuitive settings menu with categorized sections.
+  - Clear indicators for permissions and access rights.
+
+#### **7. Invoices & Payments (`invoices`)**
+- **Purpose:** Allow users to view and download invoices for shipments.
+- **Features:**
+  - List of past invoices with filtering options.
+  - PDF invoice generation.
+  - Payment status tracking.
+- **View Details:**
+  - Invoice preview screen before download.
+  - Secure payment integration for outstanding invoices.
+
+#### **8. Trip Details & Assignment (`Trip Details`)**
+- **Purpose:** Provide admins and drivers with detailed trip information.
+- **Features:**
+  - List of all trips with assignment details.
+  - Driver notifications for new assignments.
+  - Trip completion status updates.
+- **View Details:**
+  - Trip summary including pickup and drop-off locations.
+  - Driver contact details for coordination.
+
+#### **9. Feedback & Ratings (`Feedback and Ratings`, `Rating`)**
+- **Purpose:** Allow customers to rate delivery services and provide feedback.
+- **Features:**
+  - Star ratings and written reviews for completed deliveries.
+  - Admin dashboard to monitor feedback trends.
+  - Automated sentiment analysis for reviews.
+- **View Details:**
+  - Rating form with optional comments.
+  - Aggregated rating scores visible to admins.
+
+#### **10. FAQs & Support (`faq`)**
+- **Purpose:** Provide answers to common user queries.
+- **Features:**
+  - Categorized FAQ section.
+  - Search functionality for quick answers.
+  - Contact support form for additional assistance.
+- **View Details:**
+  - Simple accordion-style FAQ layout.
+  - Quick access to live support options if needed.
 
 ---
 
