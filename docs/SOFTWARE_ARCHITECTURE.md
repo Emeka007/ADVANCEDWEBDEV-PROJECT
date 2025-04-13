@@ -52,6 +52,7 @@ Built using **Java** and split into multiple service layers:
 ### Schema Overview
 The system leverages **PostgreSQL** as the primary relational database. The design captures all business entities and their relationships:
 
+[PostgreSQL Database Design (LucidChart)](https://lucid.app/lucidchart/2dbe3929-ff5a-4bf3-98f6-20bfeeaad669/edit?viewport_loc=-8346%2C-1490%2C12563%2C5471%2C0_0&invitationId=inv_16058e36-491f-4111-b8e0-9e3c4833ac30)
 +-------------------+ +--------------------+ | Customers | | Drivers Info | |-------------------| |--------------------| | _id |◄────┐ | _id | | name | └──| vehicle_id | | email | | name | | password | | origin | | city | | destination | | age, occupation | | weight, fill_rate | +-------------------+ +--------------------+
 
 
