@@ -18,12 +18,24 @@ This robust environment setup lays the groundwork for seamless scaling and enter
 
 ---
 
-## 2. Backend
-The backend is built using **Node.js** with **Express.js**, providing a robust and scalable API architecture. Key aspects include:
-- **Authentication & Security:** JWT-based authentication, OAuth 2.0 integration, and role-based access control
-- **RESTful API Endpoints:** Well-structured APIs following industry best practices
-- **Microservices Architecture:** Modular services to ensure flexibility and scalability
-- **Performance Optimization:** API caching using Redis, database indexing, and asynchronous processing
+## 2️⃣ Backend
+
+The backend is developed with **Node.js + Express.js**, enabling fast, non-blocking operations.
+
+### 🔧 Features:
+- **🔐 Authentication & Security**:
+  - JWT-based auth
+  - OAuth 2.0 (planned)
+  - Role-based access control
+- **🔗 RESTful API Endpoints**: Modular, REST-compliant services.
+- **🔨 Microservices Architecture**: Feature-based services (e.g., users, drivers, reports).
+- **⚡ Performance Optimization**:
+  - Caching via **Redis**
+  - Indexed queries in PostgreSQL
+  - Async request handling
+
+📎 _See the backend folder structure: `backend/src`_  
+📄 _API docs available in:_ [`docs/API_DOCUMENTATION.md`](../docs/API_DOCUMENTATION.md)
 
 ---
 
@@ -34,14 +46,25 @@ The frontend is developed using **React.js** with **Material UI**, ensuring a mo
 - **Responsive Design:** Fully optimized for mobile, tablet, and desktop devices
 - **Dynamic Interactivity:** Real-time updates using WebSockets
 
+📎 _Design references available in:_  
+[🎨 Figma Wireframes](https://www.figma.com/design/YdHhIYwsTxBTRNlbtngNef/Advance-web-development?node-id=0-1&p=f&t=A9cdYgSSEfD07XA6-0)
+
 ---
 
-## 4. Database
-The project leverages **PostgreSQL** as its primary database, offering high reliability and performance. The database structure includes:
-- **Data Integrity:** Strong relationships between entities and referential integrity enforcement
-- **Optimized Queries:** Indexed tables for faster retrieval
-- **Scalability:** Horizontal scaling strategies and partitioning for handling large datasets
-- **Backup & Recovery:** Automated backups and failover strategies for disaster recovery
+## 4️⃣ Database
+
+The app uses **PostgreSQL** as the RDBMS with a strong schema architecture.
+
+### 🧠 Highlights:
+- **✅ Data Integrity**: Entity relationships enforced via foreign keys
+- **🔍 Optimized Queries**: Use of indexes and query plans
+- **📈 Scalability**: Partitioned tables and horizontal scaling support
+- **🛡️ Backup & Recovery**: Cron-based daily backups and replication enabled
+
+📎 _See schema diagrams:_  
+[📊 Lucidchart ER Diagram](https://lucid.app/lucidchart/2dbe3929-ff5a-4bf3-98f6-20bfeeaad669/edit)
+
+📄 _SQL files available:_ `database/schema.sql`, `database/seed.sql`
 
 ---
 
