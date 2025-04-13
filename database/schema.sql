@@ -1,7 +1,15 @@
+-- Enable UUID support
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+-- Optional ENUM for role
+CREATE TYPE user_role AS ENUM ('admin', 'customer', 'driver');
+
 CREATE TABLE users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  role VARCHAR(50) CHECK (role IN ('admin', 'customer', 'driver')) NOT NULL DEFAULT 'customer'
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  role user_role NOT NULL DEFAULT 'customer',
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
