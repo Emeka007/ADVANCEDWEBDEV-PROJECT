@@ -1,11 +1,20 @@
 # Project Phase 2 - Basic Structure and Main Functionalities
 
 ## 1. Environment
-The project is deployed on a **cloud-based infrastructure**, ensuring scalability, availability, and secure access for users. A **CI/CD pipeline** has been implemented to automate deployment and testing processes. The environment includes:
-- **Hosting:** Cloud platform (e.g., AWS, Azure, or Google Cloud)
-- **Version Control:** GitHub for collaborative development
-- **Containerization:** Docker for consistent application deployment across environments
-- **Monitoring & Logging:** Tools such as Prometheus and Logstash for system performance tracking
+
+The project operates within a **cloud-native architecture**, leveraging infrastructure that ensures **high availability, fault tolerance, scalability**, and **security**.
+
+### Key Environment Features:
+- **Cloud Hosting Platform**: The application is hosted on a managed cloud service such as **AWS**, **Azure**, or **Google Cloud Platform (GCP)**, supporting both vertical and horizontal scaling.
+- **CI/CD Pipeline**: Automated build, test, and deployment processes are configured via **GitHub Actions** (or other tools like Jenkins/GitLab CI) to streamline delivery and reduce manual overhead.
+- **Containerization**: The full stack is containerized using **Docker**, enabling consistency across development, staging, and production environments. Future scalability with **Kubernetes (K8s)** is considered.
+- **Source Control**: **GitHub** is used for version control, collaboration, and code review processes, utilizing a Git branching strategy.
+- **Monitoring and Observability**:
+  - **Monitoring**: Implemented using **Prometheus** and **Grafana** for real-time metrics tracking.
+  - **Logging**: Centralized logging with **ELK Stack (Elasticsearch, Logstash, Kibana)** or **Cloud-native logging (e.g., AWS CloudWatch or GCP Stackdriver)** for diagnostics and auditing.
+- **Security and Compliance**: Environment configurations include encrypted environment variables, HTTPS enforcement, and role-based access to services.
+
+This robust environment setup lays the groundwork for seamless scaling and enterprise-grade reliability.
 
 ---
 
