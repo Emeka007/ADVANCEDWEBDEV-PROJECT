@@ -91,6 +91,26 @@ The system leverages **PostgreSQL** as the primary relational database. The desi
 
 ---
 
+
+## ☁️ Cloud Environment & Deployment Strategy
+
+The system is designed to be cloud-native, leveraging scalable and secure cloud services for deployment and management. Below is the recommended cloud infrastructure stack:
+
+| Service                 | Cloud Provider     | Description                                              |
+|-------------------------|--------------------|----------------------------------------------------------|
+| **Frontend Hosting**    | Vercel / Netlify   | Continuous deployment and global CDN for React frontend |
+| **Backend Hosting**     | AWS Elastic Beanstalk / Render / Railway | Managed NodeJS runtime environment                    |
+| **Database**            | AWS RDS / Supabase | Scalable, managed PostgreSQL service                     |
+| **Authentication**      | Auth0 / AWS Cognito| Secure user management and JWT-based auth                |
+| **Storage**             | AWS S3 / Cloudinary| Asset and media storage                                  |
+| **CI/CD Pipeline**      | GitHub Actions     | Automated build, test, and deployment workflows          |
+| **Container Orchestration** | AWS ECS / GCP Cloud Run | Docker-based service deployment                        |
+| **Monitoring**          | Datadog / AWS CloudWatch | Real-time logs and metrics tracking                 |
+
+This environment ensures high availability, performance, and security compliance for modern web applications.
+
+---
+
 ## 🛠️ Future Improvements
 
 - CI/CD pipeline (GitHub Actions).
