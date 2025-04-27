@@ -65,68 +65,91 @@ const Invoices = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        p: 3,
-        backgroundColor: colors.primary[400],
+        width: "100%",
+        overflow: "hidden",
       }}
     >
-      <Header 
-        title="PAYMENT HISTORY" 
-        subtitle="View detailed payment history for completed trips"
-        sx={{ mb: 3 }}
-      />
-
-      <Box
-        sx={{
-          flex: 1,
-          borderRadius: "8px",
-          overflow: "hidden",
-          boxShadow: theme.shadows[3],
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-            fontSize: "0.9rem",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: `1px solid ${colors.primary[500]}`,
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-            fontWeight: "600",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-          "& .MuiDataGrid-columnHeaderTitle": {
-            fontWeight: "bold",
-          },
-        }}
-      >
-        <DataGrid
-          rows={mockDataInvoices}
-          columns={columns}
-          checkboxSelection
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-          disableSelectionOnClick
-          sx={{
-            "& .MuiDataGrid-cell:focus": {
-              outline: "none",
-            },
-          }}
+      {/* HEADER */}
+      <Box sx={{ p: 3, pb: 0 }}>
+        <Header 
+          title="PAYMENT HISTORY" 
+          subtitle="View detailed payment history for completed trips"
         />
       </Box>
 
-      <Box sx={{ mt: 2, textAlign: "right" }}>
+      {/* DATA GRID CONTAINER */}
+      <Box
+        sx={{
+          flex: 1,
+          p: 3,
+          pt: 0,
+          overflow: "auto",
+          "&::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "&::-webkit-scrollbar-track": {
+            background: colors.primary[400],
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: colors.blueAccent[700],
+            borderRadius: "4px",
+          },
+        }}
+      >
+        {/* DATA GRID */}
+        <Box
+          sx={{
+            height: "100%",
+            minHeight: "600px", // Ensures minimum height
+            width: "100%",
+            "& .MuiDataGrid-root": {
+              border: "none",
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: colors.blueAccent[700],
+              borderBottom: "none",
+              fontSize: "0.9rem",
+            },
+            "& .MuiDataGrid-cell": {
+              borderBottom: `1px solid ${colors.primary[500]}`,
+            },
+            "& .name-column--cell": {
+              color: colors.greenAccent[300],
+              fontWeight: "600",
+            },
+            "& .MuiDataGrid-virtualScroller": {
+              backgroundColor: colors.primary[400],
+            },
+            "& .MuiDataGrid-footerContainer": {
+              borderTop: "none",
+              backgroundColor: colors.blueAccent[700],
+            },
+            "& .MuiCheckbox-root": {
+              color: `${colors.greenAccent[200]} !important`,
+            },
+            "& .MuiDataGrid-columnHeaderTitle": {
+              fontWeight: "bold",
+            },
+          }}
+        >
+          <DataGrid
+            rows={mockDataInvoices}
+            columns={columns}
+            checkboxSelection
+            pageSize={10}
+            rowsPerPageOptions={[10]}
+            disableSelectionOnClick
+            sx={{
+              "& .MuiDataGrid-cell:focus": {
+                outline: "none",
+              },
+            }}
+          />
+        </Box>
+      </Box>
+
+      {/* FOOTER */}
+      <Box sx={{ p: 3, pt: 0, textAlign: "right" }}>
         <Typography variant="caption" color={colors.grey[100]}>
           Last updated: {new Date().toLocaleDateString()}
         </Typography>

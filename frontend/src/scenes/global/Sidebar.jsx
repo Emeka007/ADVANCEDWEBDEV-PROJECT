@@ -24,10 +24,7 @@ const SidebarItem = ({ title, to, icon, selected, setSelected }) => {
   return (
     <MenuItem
       active={selected === title}
-      style={{ 
-        color: colors.grey[100],
-        margin: "5px 0",
-      }}
+      style={{ color: colors.grey[100], margin: "5px 0" }}
       onClick={() => setSelected(title)}
       icon={icon}
       component={<Link to={to} style={{ textDecoration: "none" }} />}
@@ -49,44 +46,31 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
   };
 
   return (
-    <Box
-      sx={{
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        zIndex: 1000,
-        width: isCollapsed ? '80px' : '250px',
-        transition: 'width 0.3s ease',
-        "& .pro-sidebar": {
-          height: "100vh",
-        },
-        "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
-        },
-        "& .pro-icon-wrapper": {
-          backgroundColor: "transparent !important",
-        },
-        "& .pro-menu-item": {
-          color: `${colors.grey[100]} !important`,
-          "&:hover": {
-            color: `${colors.blueAccent[500]} !important`,
-          },
-          "&.active": {
-            color: `${colors.greenAccent[500]} !important`,
-          },
-        },
-        "& .pro-menu": {
-          padding: "10px 0",
-        },
-      }}
-    >
-      <ProSidebar 
-        collapsed={isCollapsed}
-        breakPoint="md"
-        width="250px"
-        collapsedWidth="80px"
-      >
+    <Box sx={{
+      position: 'fixed',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      zIndex: 1000,
+      width: isCollapsed ? '80px' : '250px',
+      transition: 'width 0.3s ease',
+      overflowY: 'auto',
+      "& .pro-sidebar": { height: '100%', minHeight: '100vh' },
+      "& .pro-sidebar-inner": { background: `${colors.primary[400]} !important` },
+      "& .pro-icon-wrapper": { backgroundColor: "transparent !important" },
+      "& .pro-menu-item": { 
+        color: `${colors.grey[100]} !important`,
+        "&:hover": { color: `${colors.blueAccent[500]} !important` },
+        "&.active": { color: `${colors.greenAccent[500]} !important` },
+      },
+      "& .pro-menu": { padding: "10px 0" },
+      "&::-webkit-scrollbar": { width: "6px" },
+      "&::-webkit-scrollbar-thumb": { 
+        background: theme.palette.mode === 'dark' ? '#555' : '#888',
+        borderRadius: "3px" 
+      },
+    }}>
+      <ProSidebar collapsed={isCollapsed} breakPoint="md" width="250px" collapsedWidth="80px">
         <Menu>
           {/* Header */}
           <MenuItem
