@@ -191,6 +191,14 @@ body {
   transform: translateX(50%);
 }
 
+.sign-up-container {
+  border: 2px solid red !important; /* To see if the element exists */
+}
+
+.container.right-panel-active .sign-up-container {
+  background: yellow !important; /* To verify the active state */
+}
+
 .SignInAndSignUp .overlay-panel {
   position: absolute;
   display: flex;

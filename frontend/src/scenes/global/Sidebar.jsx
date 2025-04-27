@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Sidebar as ProSidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import { Box, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -16,251 +15,245 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const SidebarItem = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  
   return (
     <MenuItem
       active={selected === title}
-      style={{
+      style={{ 
         color: colors.grey[100],
+        margin: "5px 0",
       }}
       onClick={() => setSelected(title)}
       icon={icon}
+      component={<Link to={to} style={{ textDecoration: "none" }} />}
     >
-      <Typography>{title}</Typography>
-      <Link to={to} />
+      <Typography variant="body1">{title}</Typography>
     </MenuItem>
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { collapseSidebar } = useProSidebar();
   const [selected, setSelected] = useState("Dashboard");
+
+  const handleCollapse = () => {
+    collapseSidebar();
+    setIsCollapsed(prev => !prev);
+  };
 
   return (
     <Box
       sx={{
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        zIndex: 1000,
+        width: isCollapsed ? '80px' : '250px',
+        transition: 'width 0.3s ease',
+        "& .pro-sidebar": {
+          height: "100vh",
+        },
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
+        "& .pro-menu-item": {
+          color: `${colors.grey[100]} !important`,
+          "&:hover": {
+            color: `${colors.blueAccent[500]} !important`,
+          },
+          "&.active": {
+            color: `${colors.greenAccent[500]} !important`,
+          },
         },
-        "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
-        },
-        "& .pro-menu-item.active": {
-          color: "#6870fa !important",
+        "& .pro-menu": {
+          padding: "10px 0",
         },
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
-          {/* LOGO AND MENU ICON */}
+      <ProSidebar 
+        collapsed={isCollapsed}
+        breakPoint="md"
+        width="250px"
+        collapsedWidth="80px"
+      >
+        <Menu>
+          {/* Header */}
           <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            onClick={handleCollapse}
+            icon={<MenuOutlinedIcon />}
             style={{
-              margin: "10px 0 20px 0",
+              margin: "10px 0 15px 0",
               color: colors.grey[100],
             }}
           >
             {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  AHOLAN
+              <Box display="flex" justifyContent="space-between" alignItems="center" ml="10px">
+                <Typography variant="h4" color={colors.grey[100]} fontWeight="bold">
+                  ADMIN
                 </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon />
-                </IconButton>
               </Box>
             )}
           </MenuItem>
 
+          {/* User Profile */}
           {!isCollapsed && (
-            <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
+            <Box mb="20px" px="15px">
+              <Box display="flex" justifyContent="center" alignItems="center" mb="10px">
                 <img
                   alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/user.png`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                  width="80px"
+                  height="80px"
+                  src={`${process.env.PUBLIC_URL}/assets/user.png`}
+                  style={{ borderRadius: "50%", objectFit: "cover" }}
+                  onError={(e) => {
+                    e.target.src = `${process.env.PUBLIC_URL}/assets/default-user.png`;
+                  }}
                 />
               </Box>
               <Box textAlign="center">
-                <Typography
-                  variant="h2"
-                  color={colors.grey[100]}
-                  fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
-                >
-                  IBK
+                <Typography variant="h3" color={colors.grey[100]} fontWeight="bold">
+                  Admin User
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  FRONTEND Admin
+                <Typography variant="h6" color={colors.greenAccent[500]}>
+                  Administrator
                 </Typography>
               </Box>
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
+          {/* Menu Items */}
+          <Box px={isCollapsed ? "10px" : "20px"}>
+            <SidebarItem
               title="Dashboard"
-              to="/"
+              to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              fontWeight="bold"
-              sx={{ m: "15px 0 5px 20px" }}
+            <Typography 
+              variant="h6" 
+              color={colors.grey[300]} 
+              sx={{ 
+                m: "15px 0 5px 0",
+                paddingLeft: isCollapsed ? "10px" : "20px",
+                display: isCollapsed ? "none" : "block"
+              }}
             >
-              CUSTOMER
+              Data
             </Typography>
-            <Item
-              title="Booking Overview"
-              to="/bookingh"
+            <SidebarItem
+              title="Team"
+              to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Trip Details"
-              to="/bookingd"
+            <SidebarItem
+              title="Contacts"
+              to="/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Payment History"
+            <SidebarItem
+              title="Invoices"
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
 
-            <Typography
-              variant="h6"
-              fontWeight="bold"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+            <Typography 
+              variant="h6" 
+              color={colors.grey[300]} 
+              sx={{ 
+                m: "15px 0 5px 0",
+                paddingLeft: isCollapsed ? "10px" : "20px",
+                display: isCollapsed ? "none" : "block"
+              }}
             >
-              DRIVERS
+              Pages
             </Typography>
-            <Item
-              title="Profile Form"
+            <SidebarItem
+              title="Profile"
               to="/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Feedback and Ratings"
+            <SidebarItem
+              title="Calendar"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Performance Metrics"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Trip Details"
+            <SidebarItem
+              title="FAQ"
               to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
 
-             <Item
-              title="Complaint area"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-
-            <Item
-              title="Delivery fee and commission"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-  
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+            <Typography 
+              variant="h6" 
+              color={colors.grey[300]} 
+              sx={{ 
+                m: "15px 0 5px 0",
+                paddingLeft: isCollapsed ? "10px" : "20px",
+                display: isCollapsed ? "none" : "block"
+              }}
             >
               Charts
             </Typography>
-            <Item
+            <SidebarItem
               title="Bar Chart"
               to="/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            <SidebarItem
               title="Pie Chart"
               to="/pie"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            <SidebarItem
               title="Line Chart"
               to="/line"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Geography Chart"
+            <SidebarItem
+              title="Geography"
               to="/geography"
               icon={<MapOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            
-            <Item
+            <SidebarItem
               title="Settings"
-              to="settings/"
+              to="/settings"
               icon={<SettingsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              fontWeight="bold"
-              sx={{ m: "15px 0 5px 20px" }}
-            ></Typography>
           </Box>
         </Menu>
       </ProSidebar>

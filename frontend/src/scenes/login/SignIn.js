@@ -1,21 +1,23 @@
 // SignIn.js (SignInForm)
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Added for navigation
 
 // Fake User Login info
 const database = [
   {
     email: "user1@gmail.com",
-    password: "pass1",   // only 5 characters
+    password: "pass1",
     userType: "driver"
   },
   {
     email: "user2@gmail.com",
-    password: "pass2",   // only 5 characters
+    password: "pass2",
     userType: "consumer"
   }
 ];
 
 const SignInForm = ({ setLoggedIn }) => {
+  const navigate = useNavigate(); // Initialize navigate
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -47,6 +49,8 @@ const SignInForm = ({ setLoggedIn }) => {
     if (name === "password") {
       if (!value) {
         setErrorMessages((prev) => ({ ...prev, password: "Password is required." }));
+      } else if (value.length < 6) { // Added minimum password length check
+        setErrorMessages((prev) => ({ ...prev, password: "Password must be at least 6 characters." }));
       } else {
         setErrorMessages((prev) => ({ ...prev, password: "" }));
       }
@@ -57,14 +61,24 @@ const SignInForm = ({ setLoggedIn }) => {
     evt.preventDefault();
     const { email, password } = state;
 
+    // Additional validation before submission
+    if (!email || !password) {
+      setErrorMessages({
+        email: !email ? "Email is required." : "",
+        password: !password ? "Password is required." : ""
+      });
+      return;
+    }
+
     const userData = database.find((user) => user.email === email);
 
     if (userData) {
       if (userData.password !== password) {
         setErrorMessages((prev) => ({ ...prev, password: "Invalid password." }));
       } else {
-        setErrorMessages({ email: "", password: "" });  // clear errors
+        setErrorMessages({ email: "", password: "" });
         setLoggedIn();
+        navigate("/dashboard"); // Redirect to dashboard after successful login
       }
     } else {
       setErrorMessages((prev) => ({ ...prev, email: "Email not found." }));
@@ -82,6 +96,7 @@ const SignInForm = ({ setLoggedIn }) => {
           name="email"
           value={state.email}
           onChange={handleChange}
+          required
         />
         {errorMessages.email && <div className="error">{errorMessages.email}</div>}
 
@@ -91,6 +106,8 @@ const SignInForm = ({ setLoggedIn }) => {
           placeholder="Password"
           value={state.password}
           onChange={handleChange}
+          required
+          minLength="6"
         />
         {errorMessages.password && <div className="error">{errorMessages.password}</div>}
 

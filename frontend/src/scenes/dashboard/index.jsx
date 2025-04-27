@@ -12,7 +12,6 @@ import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
 import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
-import { DataGrid } from "@mui/x-data-grid";
 
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
@@ -22,7 +21,23 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box m="20px">
+    <Box 
+      m="20px"
+      sx={{
+        height: "calc(100vh - 40px)", // Subtract top and bottom margin
+        overflowY: "auto", // Enable vertical scrolling
+        "&::-webkit-scrollbar": {
+          width: "8px",
+        },
+        "&::-webkit-scrollbar-track": {
+          background: colors.primary[400],
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: colors.blueAccent[700],
+          borderRadius: "4px",
+        },
+      }}
+    >
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your Report dashboard" />
@@ -49,6 +64,10 @@ const Dashboard = () => {
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
         gap="20px"
+        sx={{
+          pb: 2, // Add padding at bottom
+          minHeight: "fit-content", // Ensure container fits all content
+        }}
       >
         {/* ROW 1 */}
         <Box
@@ -79,7 +98,7 @@ const Dashboard = () => {
         >
           <StatBox
             title="10,225"
-            subtitle="Destionations"
+            subtitle="Destinations"
             progress="0.50"
             increase="+21%"
             icon={
@@ -137,23 +156,15 @@ const Dashboard = () => {
           <Box
             mt="25px"
             p="0 30px"
-            display="flex "
+            display="flex"
             justifyContent="space-between"
             alignItems="center"
           >
             <Box>
-              <Typography
-                variant="h5"
-                fontWeight="600"
-                color={colors.grey[100]}
-              >
+              <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>
                 Income Generated
               </Typography>
-              <Typography
-                variant="h3"
-                fontWeight="bold"
-                color={colors.greenAccent[500]}
-              >
+              <Typography variant="h3" fontWeight="bold" color={colors.greenAccent[500]}>
                 €59,342.32
               </Typography>
             </Box>
@@ -189,7 +200,7 @@ const Dashboard = () => {
           </Box>
           {mockTransactions.map((transaction, i) => (
             <Box
-              key={`€{transaction.txId}-€{i}`}
+              key={`${transaction.txId}-${i}`}
               display="flex"
               justifyContent="space-between"
               alignItems="center"
@@ -197,11 +208,7 @@ const Dashboard = () => {
               p="15px"
             >
               <Box>
-                <Typography
-                  color={colors.greenAccent[500]}
-                  variant="h5"
-                  fontWeight="600"
-                >
+                <Typography color={colors.greenAccent[500]} variant="h5" fontWeight="600">
                   {transaction.txId}
                 </Typography>
                 <Typography color={colors.grey[100]}>
@@ -209,11 +216,7 @@ const Dashboard = () => {
                 </Typography>
               </Box>
               <Box color={colors.grey[100]}>{transaction.date}</Box>
-              <Box
-                backgroundColor={colors.greenAccent[500]}
-                p="5px 10px"
-                borderRadius="4px"
-              >
+              <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
                 €{transaction.cost}
               </Box>
             </Box>
@@ -230,18 +233,9 @@ const Dashboard = () => {
           <Typography variant="h5" fontWeight="600">
             Profitability
           </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
+          <Box display="flex" flexDirection="column" alignItems="center" mt="25px">
             <ProgressCircle size="125" />
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
+            <Typography variant="h5" color={colors.greenAccent[500]} sx={{ mt: "15px" }}>
               €48,352 income generated
             </Typography>
             <Typography>Includes extra misc expenditures and costs</Typography>
@@ -252,11 +246,7 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ padding: "30px 30px 0 30px" }}
-          >
+          <Typography variant="h5" fontWeight="600" sx={{ padding: "30px 30px 0 30px" }}>
             Complaint Area
           </Typography>
           <Box height="250px" mt="-20px">
@@ -269,11 +259,7 @@ const Dashboard = () => {
           backgroundColor={colors.primary[400]}
           padding="30px"
         >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ marginBottom: "15px" }}
-          >
+          <Typography variant="h5" fontWeight="600" sx={{ marginBottom: "15px" }}>
             Geography Based Traffic
           </Typography>
           <Box height="200px">

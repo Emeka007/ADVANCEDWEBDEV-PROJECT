@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -44,6 +44,11 @@ const Calendar = () => {
     ) {
       selected.event.remove();
     }
+  };
+
+  // Custom formatDate function since we're not importing it from FullCalendar
+  const formatDate = (date, options) => {
+    return new Intl.DateTimeFormat('en-US', options).format(new Date(date));
   };
 
   return (

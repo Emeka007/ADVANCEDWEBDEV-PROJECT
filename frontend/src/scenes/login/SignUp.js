@@ -1,4 +1,4 @@
-// SignUp.js (SignUpForm)
+// src/scenes/login/SignUp.js
 import React, { useState } from "react";
 
 const SignUpForm = ({ setLoggedIn }) => {
@@ -15,110 +15,76 @@ const SignUpForm = ({ setLoggedIn }) => {
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-    setState((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setState(prev => ({ ...prev, [name]: value }));
   };
 
-  const renderError = (field) => {
-    if (errorMessages[field]) {
-      return <div className="error">{errorMessages[field]}</div>;
-    }
-    return null;
-  };
-
-  const handleOnSubmit = (evt) => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    const { name, email, password, age, phoneNumber, address } = state;
-
-    const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!name.trim()) newErrors.name = "Name is required.";
-    if (!email || !emailRegex.test(email)) newErrors.email = "Invalid email format.";
-    if (!password || password.length < 6) newErrors.password = "Password must be at least 6 characters.";
-    if (!age) newErrors.age = "Age is required.";
-    if (!phoneNumber) newErrors.phoneNumber = "Phone number is required.";
-    if (!address.trim()) newErrors.address = "Address is required.";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrorMessages(newErrors);
-    } else {
-      setErrorMessages({});
-      setLoggedIn();
-
-      // Clear form after success
-      setState({
-        name: "",
-        email: "",
-        password: "",
-        age: "",
-        phoneNumber: "",
-        address: "",
-      });
-    }
+    console.log("Signing up with:", state);
+    setLoggedIn();
   };
 
   return (
     <div className="form-container sign-up-container">
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={handleSubmit}>
         <h1>Create Account</h1>
-
+        
         <input
           type="text"
           name="name"
+          placeholder="Name"
           value={state.name}
           onChange={handleChange}
-          placeholder="Name"
+          required
         />
-        {renderError("name")}
-
+        
         <input
           type="email"
           name="email"
+          placeholder="Email"
           value={state.email}
           onChange={handleChange}
-          placeholder="Email"
+          required
         />
-        {renderError("email")}
-
+        
         <input
           type="password"
           name="password"
+          placeholder="Password"
           value={state.password}
           onChange={handleChange}
-          placeholder="Password"
+          required
+          minLength="6"
         />
-        {renderError("password")}
-
+        
         <input
           type="number"
           name="age"
+          placeholder="Age"
           value={state.age}
           onChange={handleChange}
-          placeholder="Age"
+          min="18"
+          max="100"
         />
-        {renderError("age")}
-
+        
         <input
           type="tel"
           name="phoneNumber"
+          placeholder="Phone Number"
           value={state.phoneNumber}
           onChange={handleChange}
-          placeholder="Phone Number"
+          pattern="[0-9]{10}"
+          title="10 digit phone number"
         />
-        {renderError("phoneNumber")}
-
+        
         <input
           type="text"
           name="address"
+          placeholder="Address"
           value={state.address}
           onChange={handleChange}
-          placeholder="Address"
         />
-        {renderError("address")}
-
+        
         <button type="submit">Sign Up</button>
       </form>
     </div>
