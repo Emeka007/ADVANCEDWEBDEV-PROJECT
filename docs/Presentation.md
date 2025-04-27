@@ -8,7 +8,7 @@ Built with **React.js**, **Node.js**, **Express.js**, **PostgreSQL**, and **AWS 
 - [Project Overview](#-project-overview)
 - [Tech Stack](#-tech-stack)
 - [Features](#-features)
-- [Architecture](#-architecture)
+- [Architecture](https://www.canva.com/design/DAF2_XFD4xs/cDNRK073cZ9Brg_7a3qeXw/edit)
 - [Use Cases](#-use-cases)
 - [Development Process](#-development-process)
 - [Reflection and Future Work](#-reflection-and-future-work)
@@ -61,7 +61,7 @@ The system follows a service-oriented and modular microservices-inspired design:
 - **Backend:** Modular services for authentication, booking, payments, and emissions.
 - **Database:** Normalized tables with optimized indexes and relationships.
 
-📎 [View Full Architecture on Canva](#)
+📎 [View Full Architecture on Canva](https://www.canva.com/design/DAF2_XFD4xs/cDNRK073cZ9Brg_7a3qeXw/edit)
 
 ---
 
@@ -74,7 +74,8 @@ The system follows a service-oriented and modular microservices-inspired design:
 | Manage users, vehicles, parcels | ✅ | Admin portal |
 | Real-time notifications | ❌ | Planned for future enhancement |
 
-📎 [Wireframe & UI Design on Figma](#)
+📎 _Design references available in:_  
+[🎨 Figma Wireframes](https://www.figma.com/design/YdHhIYwsTxBTRNlbtngNef/Advance-web-development?node-id=0-1&p=f&t=A9cdYgSSEfD07XA6-0)
 
 ---
 
@@ -108,8 +109,8 @@ The system follows a service-oriented and modular microservices-inspired design:
 ---
 
 ## 📙 Useful Links
-- 📎 [Project Architecture (Canva)](#)
-- 🎨 [Wireframes & Prototypes (Figma)](#)
+- 📎 [Project Architecture (Canva)](https://www.canva.com/design/DAF2_XFD4xs/cDNRK073cZ9Brg_7a3qeXw/edit)
+- 🎨 [Wireframes & Prototypes (Figma)](https://www.figma.com/design/YdHhIYwsTxBTRNlbtngNef/Advance-web-development?node-id=0-1&p=f&t=A9cdYgSSEfD07XA6-0)
 
 ---
 
