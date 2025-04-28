@@ -30,6 +30,10 @@ The frontend has been restructured using a new **`scenes/` directory**. Each fol
 | `Rating/`                | Component for rating displays and aggregation.                             |
 | `settings/`              | Account settings page with editable profile fields.                        |
 | `Trip Details/`          | Displays details of each booking including vehicle, route, and CO2 data.   |
+| `co2/Emissions_Calculator/`          |Calculator tool for estimating carbon emissions based on trip parameters.   |
+| `co2/Package_Level/`          | Displays carbon footprint per package at shipment level.   |
+| `co2/Sustainability/`          | Sustainability goals tracker based on CO2 reduction targets.   |
+| `co2/Trip_overview/`          | Overview of trip emissions and eco-friendly delivery insights.  |
 
 ---
 
