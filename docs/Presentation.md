@@ -111,6 +111,8 @@ The system follows a service-oriented and modular microservices-inspired design:
 ## 📙 Useful Links
 - 📎 [Project Architecture (Canva)](https://www.canva.com/design/DAF2_XFD4xs/cDNRK073cZ9Brg_7a3qeXw/edit)
 - 🎨 [Wireframes & Prototypes (Figma)](https://www.figma.com/design/YdHhIYwsTxBTRNlbtngNef/Advance-web-development?node-id=0-1&p=f&t=A9cdYgSSEfD07XA6-0)
+- 🎨 [Video demo](https://drive.google.com/file/d/1ZydfUV4QncTcFN-y7nkoEAi5X9aDhaLz/view?usp=sharing) 
+  
 
 ---
 
