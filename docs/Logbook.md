@@ -51,29 +51,29 @@
 
 ## Phase 3 - Advanced Features and Optimization (16/04/2025 - 28/04/2025)
 
-| Date       | Used Hours | Subject(s)                              | Outcome |
-|------------|------------|------------------------------------------|---------|
-| 16.04.2025 | 3 hrs      | Project Review & Feature Planning        | Identified improvements based on Phases 1 & 2 outcomes |
-| 17.04.2025 | 4 hrs      | Created `scenes/` Directory Structure    | Modularized UI views including `dashboard`, `calendar`, `form`, `bar`, etc. |
-| 18.04.2025 | 3 hrs      | Implemented Charts (Bar, Line, Pie)      | Used Recharts to visualize performance, trips, and emissions |
-| 19.04.2025 | 3 hrs      | Calendar Integration                     | Added delivery calendar with scheduling features |
-| 20.04.2025 | 3 hrs      | Feedback and Ratings Feature             | Enabled drivers/consumers to submit ratings and view responses |
-| 21.04.2025 | 4 hrs      | Performance Metrics View                 | Designed new dashboard for KPIs (delivery time, CO2 emissions, etc.) |
-| 22.04.2025 | 2 hrs      | Responsive Layout Enhancements           | Refined UI layout across all screen sizes |
-| 23.04.2025 | 3 hrs      | Accessibility & UX Enhancements          | Added keyboard navigation, ARIA roles, and WCAG styling |
-| 24.04.2025 | 3 hrs      | Trip Detail Scene                        | Implemented detailed tracking of individual deliveries |
-| 25.04.2025 | 3 hrs      | Dashboard Filtering & Sorting            | Enabled dynamic filtering by role/date/status |
-| 26.04.2025 | 2 hrs      | Review & Component Cleanup               | Refactored redundant code and consolidated styles |
-| 27.04.2025 | 2 hrs      | Phase 3 Documentation                    | Drafted markdown summary and updated UI wireframes |
-| 28.04.2025 | 2 hrs      | Final Testing & Submission               | Completed testing of new scenes and submitted Phase 3 |
-
+| Date       | Used Hours | Subject(s)                         | Outcome                                           |
+|------------|------------|------------------------------------|---------------------------------------------------|
+| 16.04.2025 | 3 hrs       | Project Review & Feature Planning  | Identified improvements based on Phase 2 outcomes |
+| 17.04.2025 | 4 hrs       | Created scenes/ Directory Structure| Modularized UI views including dashboard, calendar, form, bar, etc. |
+| 18.04.2025 | 3 hrs       | Implemented Charts (Bar, Line, Pie)| Visualized trip data, CO₂ emissions, and user activities |
+| 19.04.2025 | 3 hrs       | Calendar Integration               | Developed scheduling feature using fullCalendar   |
+| 20.04.2025 | 3 hrs       | Feedback and Ratings Feature       | Added rating submission for deliveries            |
+| 21.04.2025 | 7 hrs       | Emission Monitoring & Report Dashboard| Created real-time CO₂ emission reports          |
+| 22.04.2025 | 2 hrs       | Responsive Layout Enhancements     | Improved UI behavior on mobile and tablet screens |
+| 23.04.2025 | 3 hrs       | Accessibility & UX Enhancements    | Enhanced keyboard navigation and ARIA labeling    |
+| 24.04.2025 | 3 hrs       | Trip Detail View                   | Detailed trip tracking (distance, time, CO₂ emissions)|
+| 25.04.2025 | 3 hrs       | Dashboard Filtering & Sorting      | Enabled data filtering by status, role, and emissions|
+| 26.04.2025 | 2 hrs       | Review & Component Cleanup         | Cleaned redundant code and optimized SCSS/CSS     |
+| 27.04.2025 | 2 hrs       | Phase 3 Documentation              | Documented Phase 3 features and CO₂ tracking design|
+| 28.04.2025 | 2 hrs       | Final Testing & Phase 3 Submission | Tested all new modules and submitted Phase 3      |
 ---
 
-### ✅ Total Phase 3 Time Logged: **39 hrs**
+
 
 **Key Highlights:**
 - Modular scene-based UI refactor (`scenes/` structure)
 - Visual analytics using charts
+- Emission Monitoring & Report Dashboard
 - Calendar-based delivery scheduling
 - Trip-level data tracking and dashboard improvements
 - Accessibility and responsive design enhancements
