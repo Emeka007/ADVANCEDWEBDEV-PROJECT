@@ -4,7 +4,7 @@ import { tokens } from "../../theme";
 import { mockDataInvoices } from "../../data/mockData";
 import Header from "../../components/Header";
 
-const Invoices = () => {
+const Invoices = ({ isSidebarCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -42,10 +42,7 @@ const Invoices = () => {
       headerAlign: "right",
       align: "right",
       renderCell: (params) => (
-        <Typography 
-          color={colors.greenAccent[500]}
-          fontWeight="600"
-        >
+        <Typography color={colors.greenAccent[500]} fontWeight="600">
           €{params.row.cost}
         </Typography>
       ),
@@ -62,94 +59,88 @@ const Invoices = () => {
   return (
     <Box 
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        width: "100%",
-        overflow: "hidden",
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: isSidebarCollapsed ? '80px' : '250px',
+        overflow: 'auto',
+        backgroundColor: colors.primary[400],
+        transition: 'left 0.3s ease',
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
-      {/* HEADER */}
-      <Box sx={{ p: 3, pb: 0 }}>
+      {/* Header Section */}
+      <Box sx={{ 
+        p: 3,
+        flexShrink: 0 // Prevents header from shrinking
+      }}>
         <Header 
           title="PAYMENT HISTORY" 
-          subtitle="View detailed payment history for completed trips"
+          subtitle="View detailed payment history for completed trips" 
         />
       </Box>
 
-      {/* DATA GRID CONTAINER */}
-      <Box
-        sx={{
-          flex: 1,
-          p: 3,
-          pt: 0,
-          overflow: "auto",
-          "&::-webkit-scrollbar": {
-            width: "8px",
-          },
-          "&::-webkit-scrollbar-track": {
-            background: colors.primary[400],
-          },
-          "&::-webkit-scrollbar-thumb": {
-            background: colors.blueAccent[700],
-            borderRadius: "4px",
-          },
-        }}
-      >
-        {/* DATA GRID */}
-        <Box
+      {/* Main Content Area */}
+      <Box sx={{
+        flex: 1,
+        overflow: 'auto',
+        p: 3,
+        pt: 0,
+        '&::-webkit-scrollbar': {
+          width: '8px',
+        },
+        '&::-webkit-scrollbar-track': {
+          background: colors.primary[400],
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: colors.blueAccent[700],
+          borderRadius: '4px',
+        },
+      }}>
+        <DataGrid
+          rows={mockDataInvoices}
+          columns={columns}
+          checkboxSelection
           sx={{
-            height: "100%",
-            minHeight: "600px", // Ensures minimum height
-            width: "100%",
-            "& .MuiDataGrid-root": {
-              border: "none",
+            height: '100%',
+            width: '100%',
+            '& .MuiDataGrid-root': {
+              border: 'none',
             },
-            "& .MuiDataGrid-columnHeaders": {
+            '& .MuiDataGrid-columnHeaders': {
               backgroundColor: colors.blueAccent[700],
-              borderBottom: "none",
-              fontSize: "0.9rem",
+              borderBottom: 'none',
             },
-            "& .MuiDataGrid-cell": {
+            '& .MuiDataGrid-cell': {
               borderBottom: `1px solid ${colors.primary[500]}`,
             },
-            "& .name-column--cell": {
+            '& .name-column--cell': {
               color: colors.greenAccent[300],
-              fontWeight: "600",
+              fontWeight: '600',
             },
-            "& .MuiDataGrid-virtualScroller": {
+            '& .MuiDataGrid-virtualScroller': {
               backgroundColor: colors.primary[400],
             },
-            "& .MuiDataGrid-footerContainer": {
-              borderTop: "none",
+            '& .MuiDataGrid-footerContainer': {
+              borderTop: 'none',
               backgroundColor: colors.blueAccent[700],
             },
-            "& .MuiCheckbox-root": {
+            '& .MuiCheckbox-root': {
               color: `${colors.greenAccent[200]} !important`,
             },
-            "& .MuiDataGrid-columnHeaderTitle": {
-              fontWeight: "bold",
-            },
           }}
-        >
-          <DataGrid
-            rows={mockDataInvoices}
-            columns={columns}
-            checkboxSelection
-            pageSize={10}
-            rowsPerPageOptions={[10]}
-            disableSelectionOnClick
-            sx={{
-              "& .MuiDataGrid-cell:focus": {
-                outline: "none",
-              },
-            }}
-          />
-        </Box>
+        />
       </Box>
 
-      {/* FOOTER */}
-      <Box sx={{ p: 3, pt: 0, textAlign: "right" }}>
+      {/* Footer Section */}
+      <Box sx={{ 
+        p: 3,
+        pt: 0,
+        textAlign: 'right',
+        flexShrink: 0 // Prevents footer from shrinking
+      }}>
         <Typography variant="caption" color={colors.grey[100]}>
           Last updated: {new Date().toLocaleDateString()}
         </Typography>

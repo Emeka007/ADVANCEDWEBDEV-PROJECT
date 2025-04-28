@@ -25,6 +25,14 @@ import Geography from "./scenes/geography";
 import Settings from "./scenes/settings";
 import Calendar from "./scenes/calendar/calendar";
 
+// CO2 Emissions
+import Trip_overview from "./scenes/co2/Trip_overview";
+import Package_Level from "./scenes/co2/Package_Level";
+import Emissions_Calculator from "./scenes/co2/Emissions_Calculator";
+import SustainabilityGoalsTracker from "./scenes/co2/Sustainability";
+
+
+
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -129,6 +137,27 @@ function App() {
                         <FAQ />
                       </ProtectedRoute>
                     }/>
+                     {/* CO2 Emissions Pages */}
+<Route path="/trip_overview" element={
+  <ProtectedRoute isAuthenticated={loggedIn}>
+    <Trip_overview />
+  </ProtectedRoute>
+}/>
+<Route path="/package_level" element={
+  <ProtectedRoute isAuthenticated={loggedIn}>
+    <Package_Level />
+  </ProtectedRoute>
+}/>
+<Route path="/emissions_calculator" element={
+  <ProtectedRoute isAuthenticated={loggedIn}>
+    <Emissions_Calculator />
+  </ProtectedRoute>
+}/>
+<Route path="/sustainability_goals" element={
+  <ProtectedRoute isAuthenticated={loggedIn}>
+    <SustainabilityGoalsTracker />
+  </ProtectedRoute>
+}/>
 
                     {/* Charts */}
                     <Route path="/bar" element={

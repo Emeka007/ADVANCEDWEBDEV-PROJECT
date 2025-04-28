@@ -1,100 +1,166 @@
-import { Box } from "@mui/material";
+// src/pages/BookingD.jsx
+import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
-import { useTheme } from "@mui/material";
 
-const BookingD = () => {
+const BookingD = ({ isSidebarCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "BookingId", headerName: "Booking ID" },
+    { 
+      field: "id", 
+      headerName: "ID", 
+      width: 70,
+      headerAlign: "center",
+      align: "center",
+    },
+    { 
+      field: "BookingId", 
+      headerName: "BOOKING ID",
+      flex: 1,
+      headerAlign: "left",
+    },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "NAME",
       flex: 1,
       cellClassName: "name-column--cell",
+      headerAlign: "left",
     },
     {
       field: "age",
-      headerName: "Age",
+      headerName: "AGE",
       type: "number",
+      flex: 0.5,
       headerAlign: "left",
       align: "left",
     },
     {
       field: "phone",
-      headerName: "Phone Number",
+      headerName: "PHONE NUMBER",
       flex: 1,
+      headerAlign: "left",
     },
     {
       field: "email",
-      headerName: "Email",
+      headerName: "EMAIL",
       flex: 1,
+      headerAlign: "left",
     },
     {
       field: "address",
-      headerName: "Address",
+      headerName: "ADDRESS",
       flex: 1,
+      headerAlign: "left",
     },
     {
       field: "city",
-      headerName: "City",
+      headerName: "CITY",
       flex: 1,
+      headerAlign: "left",
     },
     {
       field: "zipCode",
-      headerName: "Zip Code",
+      headerName: "ZIP CODE",
       flex: 1,
+      headerAlign: "left",
     },
   ];
 
   return (
-    <Box m="20px">
-      <Header
-        title="DETAILS OF BOOKING"
-        subtitle="List of Booking"
-      />
-      <Box
-        m="40px 0 0 0"
-        height="75vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.grey[100]} !important`,
-          },
-        }}
-      >
+    <Box 
+      sx={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: isSidebarCollapsed ? '80px' : '250px',
+        overflow: 'auto',
+        backgroundColor: colors.primary[400],
+        transition: 'left 0.3s ease',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
+      {/* Header Section */}
+      <Box sx={{ 
+        p: 3,
+        flexShrink: 0 // Prevents header from shrinking
+      }}>
+        <Header 
+          title="DETAILS OF BOOKING" 
+          subtitle="List of All Booking Information" 
+        />
+      </Box>
+
+      {/* Main Content Area */}
+      <Box sx={{
+        flex: 1,
+        overflow: 'auto',
+        p: 3,
+        pt: 0,
+        '&::-webkit-scrollbar': {
+          width: '8px',
+        },
+        '&::-webkit-scrollbar-track': {
+          background: colors.primary[400],
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: colors.blueAccent[700],
+          borderRadius: '4px',
+        },
+      }}>
         <DataGrid
           rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          sx={{
+            height: '100%',
+            width: '100%',
+            '& .MuiDataGrid-root': {
+              border: 'none',
+            },
+            '& .MuiDataGrid-columnHeaders': {
+              backgroundColor: colors.blueAccent[700],
+              borderBottom: 'none',
+            },
+            '& .MuiDataGrid-cell': {
+              borderBottom: `1px solid ${colors.primary[500]}`,
+            },
+            '& .name-column--cell': {
+              color: colors.greenAccent[300],
+              fontWeight: '600',
+            },
+            '& .MuiDataGrid-virtualScroller': {
+              backgroundColor: colors.primary[400],
+            },
+            '& .MuiDataGrid-footerContainer': {
+              borderTop: 'none',
+              backgroundColor: colors.blueAccent[700],
+            },
+            '& .MuiCheckbox-root': {
+              color: `${colors.greenAccent[200]} !important`,
+            },
+            '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
+              color: `${colors.grey[100]} !important`,
+            },
+          }}
         />
+      </Box>
+
+      {/* Footer Section */}
+      <Box sx={{ 
+        p: 3,
+        pt: 0,
+        textAlign: 'right',
+        flexShrink: 0 // Prevents footer from shrinking
+      }}>
+        <Typography variant="caption" color={colors.grey[100]}>
+          Last updated: {new Date().toLocaleDateString()}
+        </Typography>
       </Box>
     </Box>
   );

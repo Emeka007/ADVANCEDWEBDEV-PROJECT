@@ -138,15 +138,15 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
               Data
             </Typography>
             <SidebarItem
-              title="Team"
-              to="/team"
+              title="Booking Details"
+              to="/bookingd"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <SidebarItem
-              title="Contacts"
-              to="/contacts"
+              title="Booking History"
+              to="/bookingh"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -201,6 +201,53 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
                 display: isCollapsed ? "none" : "block"
               }}
             >
+              
+
+              CO2 Emission
+            </Typography>
+            {/* CO2 Emission Section */}
+<SidebarItem
+  title="Trip Overview"
+  to="/trip_overview"
+  icon={<PersonOutlinedIcon />}
+  selected={selected}
+  setSelected={setSelected}
+/>
+<SidebarItem
+  title="Package-level Emissions"
+  to="/package_level"
+  icon={<CalendarTodayOutlinedIcon />}
+  selected={selected}
+  setSelected={setSelected}
+/>
+<SidebarItem
+  title="EmissionsCalculator"
+  to="/emissions_calculator"
+  icon={<HelpOutlineOutlinedIcon />}
+  selected={selected}
+  setSelected={setSelected}
+/>
+<SidebarItem
+  title="Sustainability Goals Tracker"
+  to="/sustainability_goals"
+  icon={<HelpOutlineOutlinedIcon />}
+  selected={selected}
+  setSelected={setSelected}
+/>
+
+            <Typography 
+              variant="h6" 
+              color={colors.grey[300]} 
+              sx={{ 
+                m: "15px 0 5px 0",
+                paddingLeft: isCollapsed ? "10px" : "20px",
+                display: isCollapsed ? "none" : "block"
+              }}
+            >
+
+
+
+              
               Charts
             </Typography>
             <SidebarItem
@@ -246,3 +293,4 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
 };
 
 export default Sidebar;
+

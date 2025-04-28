@@ -2,92 +2,150 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataBookingHistory } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 
-const BookingH = () => {
+const BookingH = ({ isSidebarCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   const columns = [
-    { field: "id", headerName: "ID" },
+    { 
+      field: "id", 
+      headerName: "ID", 
+      width: 70,
+      headerAlign: "center",
+      align: "center",
+    },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "NAME",
       flex: 1,
       cellClassName: "name-column--cell",
+      headerAlign: "left",
     },
     {
       field: "phone",
-      headerName: "Phone Number",
+      headerName: "PHONE NUMBER",
       flex: 1,
+      headerAlign: "left",
     },
     {
       field: "email",
-      headerName: "Email",
+      headerName: "EMAIL",
       flex: 1,
+      headerAlign: "left",
     },
-    
     {
       field: "date",
-      headerName: "Date",
+      headerName: "DATE",
       flex: 1,
+      headerAlign: "left",
     },
     {
       field: "origin",
-      headerName: "Origin",
+      headerName: "ORIGIN",
       flex: 1,
+      headerAlign: "left",
     },
     {
       field: "destination",
-      headerName: "Destination",
+      headerName: "DESTINATION",
       flex: 1,
+      headerAlign: "left",
     },
   ];
 
-
   return (
-    <Box m="20px">
-      <Header title="PERSONAL BOOKING HISTORY" subtitle="Manage Booking History" />
-      <Box
-        m="40px 0 0 0"
-        height="75vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.grey[100]} !important`,
-          },
-        }}
-      >
+    <Box 
+      sx={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: isSidebarCollapsed ? '80px' : '250px',
+        overflow: 'auto',
+        backgroundColor: colors.primary[400],
+        transition: 'left 0.3s ease',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
+      {/* Header Section */}
+      <Box sx={{ 
+        p: 3,
+        flexShrink: 0 // Prevents header from shrinking
+      }}>
+        <Header 
+          title="PERSONAL BOOKING HISTORY" 
+          subtitle="Manage Booking History" 
+        />
+      </Box>
+
+      {/* Main Content Area */}
+      <Box sx={{
+        flex: 1,
+        overflow: 'auto',
+        p: 3,
+        pt: 0,
+        '&::-webkit-scrollbar': {
+          width: '8px',
+        },
+        '&::-webkit-scrollbar-track': {
+          background: colors.primary[400],
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: colors.blueAccent[700],
+          borderRadius: '4px',
+        },
+      }}>
         <DataGrid
           rows={mockDataBookingHistory}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          sx={{
+            height: '100%',
+            width: '100%',
+            '& .MuiDataGrid-root': {
+              border: 'none',
+            },
+            '& .MuiDataGrid-columnHeaders': {
+              backgroundColor: colors.blueAccent[700],
+              borderBottom: 'none',
+            },
+            '& .MuiDataGrid-cell': {
+              borderBottom: `1px solid ${colors.primary[500]}`,
+            },
+            '& .name-column--cell': {
+              color: colors.greenAccent[300],
+              fontWeight: '600',
+            },
+            '& .MuiDataGrid-virtualScroller': {
+              backgroundColor: colors.primary[400],
+            },
+            '& .MuiDataGrid-footerContainer': {
+              borderTop: 'none',
+              backgroundColor: colors.blueAccent[700],
+            },
+            '& .MuiCheckbox-root': {
+              color: `${colors.greenAccent[200]} !important`,
+            },
+            '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
+              color: `${colors.grey[100]} !important`,
+            },
+          }}
         />
-        
+      </Box>
+
+      {/* Footer Section */}
+      <Box sx={{ 
+        p: 3,
+        pt: 0,
+        textAlign: 'right',
+        flexShrink: 0 // Prevents footer from shrinking
+      }}>
+        <Typography variant="caption" color={colors.grey[100]}>
+          Last updated: {new Date().toLocaleDateString()}
+        </Typography>
       </Box>
     </Box>
   );
